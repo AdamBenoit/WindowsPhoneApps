@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
+  <App xmlns="" ProductID="{8c0cf5fa-40d5-45c9-ac64-cd458ad3e8d2}" Title="AB System Info" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="ABSystemInfo author" Description="Sample description" Publisher="ABSystemInfo">
+    <IconPath IsRelative="true" IsResource="false">62.png</IconPath>
+    <Capabilities>
+      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
+      <Capability Name="ID_CAP_IDENTITY_USER" />
+      <Capability Name="ID_CAP_NETWORKING" />
+    </Capabilities>
+    <Tasks>
+      <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
+    </Tasks>
+    <Tokens>
+      <PrimaryToken TokenID="ABSystemInfoToken" TaskName="_default">
+        <TemplateType5>
+          <BackgroundImageURI IsRelative="true" IsResource="false">173.png</BackgroundImageURI>
+          <Count>0</Count>
+          <Title>AB System Info</Title>
+        </TemplateType5>
+      </PrimaryToken>
+    </Tokens>
+  </App>
+</Deployment>

@@ -1,0 +1,61 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="PunchClock.WP7.Views.Help"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Title="PunchClock">
+            <!--Pivot item one-->
+            <controls:PivotItem Header="about">
+                <Grid>
+                    <StackPanel VerticalAlignment="Top" Name="aboutStackPanel" Width="420" Height="612">
+                        <TextBlock Height="400" Name="textBlock1" Text="PunchClock is an email based application for keeping track of when you arrive to work, take lunch and head home." FontSize="28" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+            <!--Pivot item one-->
+            <controls:PivotItem Header="configuration">
+                <Grid>
+                    <StackPanel VerticalAlignment="Top" Name="configurationStackPanel" Width="420" Height="612">
+                        <TextBlock Height="45" Name="textBlock4" Text="1. Open application settings."  FontSize="28" TextWrapping="Wrap"/>
+                        <TextBlock Height="80" Name="textBlock5" Text="2. Select a recipient from your contacts." FontSize="28" TextWrapping="Wrap" />
+                        <TextBlock Height="45" Name="textBlock6" Text="3. Update the email subject lines." FontSize="28" TextWrapping="Wrap" />
+                        <TextBlock Height="45" Name="textBlock7" Text="4. Save the settings."  FontSize="28" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+            <!--Pivot item one-->
+            <controls:PivotItem Header="usage">
+                <Grid>
+                    <StackPanel VerticalAlignment="Top" Name="usageStackPanel" Width="420" Height="612">
+                        <TextBlock Height="45" Name="textBlock8" Text="1. Open application settings." FontSize="28" TextWrapping="Wrap" />
+                        <TextBlock Height="80" Name="textBlock9" Text="2. Select a recipient from your contacts." FontSize="28" TextWrapping="Wrap" />
+                        <TextBlock Height="45" Name="textBlock10" Text="3. Update the email subject lines." FontSize="28" TextWrapping="Wrap" />
+                        <TextBlock Height="45" Name="textBlock11" Text="4. Save the settings."  FontSize="28" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+            <!--Pivot item one-->
+            <controls:PivotItem Header="support">
+                <Grid>
+                    <StackPanel VerticalAlignment="Top" Name="supportStackPanel" Width="420" Height="612">
+                        <TextBlock Height="80" Name="textBlock12" Text="1. Email support is available from support@adambenoit.com" FontSize="28" TextWrapping="Wrap" />
+                        <TextBlock Height="80" Name="textBlock13" Text="2. Bug reports and suggestions are always welcome." FontSize="28" TextWrapping="Wrap"  />
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+</phone:PhoneApplicationPage>

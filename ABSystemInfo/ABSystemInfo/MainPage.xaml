@@ -1,0 +1,104 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="ABSystemInfo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <!--Pivot Control-->
+        <controls:Pivot Title="DEVICE INFO">
+            <controls:PivotItem Header="device">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="607" Width="456">
+                        <TextBlock Text="Device Manufacturer" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="DeviceManufacturerTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="Device Name" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="DeviceNameTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="Device Firmware Version" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="DeviceFirmwareVersionTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="Device Hardware Version" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="DeviceHardwareVersionTextBlock" FontSize="36" TextAlignment="Center"/>
+                        </StackPanel>
+
+                </Grid>
+            </controls:PivotItem>
+            
+            <controls:PivotItem Header="memory">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="607" Width="456">
+                        <TextBlock Text="Application Current Memory Usage" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="ApplicationCurrentMemoryUsageTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="Application Memory Usage Limit" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="ApplicationMemoryUsageLimitTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="Application Peak Memory Usage" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="ApplicationPeakMemoryUsageTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="DeviceTotalMemory" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="DeviceTotalMemoryTextBlock" FontSize="36" TextAlignment="Center"/>
+                       
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+            
+            <controls:PivotItem Header="hardware">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="607" Width="456">
+                        <TextBlock Text="Is Keyboard Deployed?" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="IsKeyboardDeployedTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="Is Keyboard Present?" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="IsKeyboardPresentTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="Power Source" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="PowerSourceTextBlock" FontSize="36" TextAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+            
+            <controls:PivotItem Header="os">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="607" Width="456">
+                        <TextBlock Text="Operating System" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="OperatingSystemPlatformTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="Version" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="OperatingSystemVersionTextBlock" FontSize="36" TextAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+            
+            <controls:PivotItem Header="clr">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="607" Width="456">
+                        <TextBlock Text="Major" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="ClrMajorTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="Minor" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="ClrMinorTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="Revision" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="ClrRevisionTextBlock" FontSize="36" TextAlignment="Center"/>
+                        <TextBlock Text="Build" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="ClrBuildTextBlock" FontSize="36" TextAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+            
+            <controls:PivotItem Header="unique ids">
+                <Grid>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Height="607" Width="456">
+                        <TextBlock Text="Device Unique ID" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="DeviceUniqueIDTextBlock" FontSize="36" TextAlignment="Center" TextWrapping="Wrap"/>
+                        <TextBlock Text="Windows Live Anonymous ID" Margin="10" Foreground="{StaticResource PhoneAccentBrush}" FontSize="24" TextAlignment="Center"/>
+                        <TextBlock Text="0" Margin="10" Name="WindowsLiveAnonymousIDTextBlock" FontSize="36" TextAlignment="Center" TextWrapping="Wrap"/>
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+        </controls:Pivot>
+    </Grid>
+</phone:PhoneApplicationPage>

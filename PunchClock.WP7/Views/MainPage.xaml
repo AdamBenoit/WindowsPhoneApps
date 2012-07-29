@@ -1,0 +1,52 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="PunchClock.WP7.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="True" xmlns:my="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI">
+
+	<!--LayoutRoot is the root grid where all page content is placed-->
+	<Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/background.png">
+              <ImageBrush.Stretch>Fill</ImageBrush.Stretch>
+                <ImageBrush.Opacity>0.3</ImageBrush.Opacity>
+            </ImageBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="ApplicationTitle" Text="PUNCHCLOCK" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="PageTitle" Text="send email" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <StackPanel VerticalAlignment="Top" Name="ButtonsStackPanel" Width="420" Height="391" Margin="18,0">
+                <Button Content="Start Day" Height="93" Name="DayStartButton" Width="374" Click="DayStartButton_Click" />
+                <Button Content="Start Lunch" Height="93" Name="LunchStartButton" Width="374" Click="LunchStartButton_Click" />
+                <Button Content="End Lunch" Height="93" Name="LunchEndButton" Width="374" Click="LunchEndButton_Click" />
+                <Button Content="End Day" Height="93" Name="DayEndButton" Width="374" Click="DayEndButton_Click" />
+            </StackPanel>
+        </Grid>
+        <my:AdControl Height="86" HorizontalAlignment="Left" Margin="0,444,0,0" VerticalAlignment="Top" Width="480" Grid.Row="1">
+            <my:AdControl.Name>mainPageAdControl</my:AdControl.Name>
+            <my:AdControl.ApplicationId>21f8b5df-54a9-4a05-8494-2aebbfc81236</my:AdControl.ApplicationId>
+            <my:AdControl.AdUnitId>10031489</my:AdControl.AdUnitId>
+            <my:AdControl.IsAutoRefreshEnabled>true</my:AdControl.IsAutoRefreshEnabled>
+        </my:AdControl>
+	</Grid>
+</phone:PhoneApplicationPage>
+  

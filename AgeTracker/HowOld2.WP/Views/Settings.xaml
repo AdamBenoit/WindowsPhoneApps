@@ -1,0 +1,92 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="HowOld2.WP.Views.Settings"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input" 
+    xmlns:local="clr-namespace:HowOld2.WP"
+    
+    
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="800"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait"  Orientation="Portrait"
+    shell:SystemTray.IsVisible="False" Loaded="PhoneApplicationPage_Loaded">
+
+    <phone:PhoneApplicationPage.Resources>
+        <local:AppSettings x:Key="appSettings"></local:AppSettings>
+    </phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot contains the root grid where all other page content is placed-->
+    <Grid x:Name="LayoutRoot">
+        <controls:Pivot Title="AGE TRACKER">
+            <!--Panorama item one-->
+            <controls:PivotItem Header="Person 1">
+                <Grid>
+                    <StackPanel>
+                        <TextBlock Text="Name" Name="person1NameLabelTextBlock"  FontSize="24" Foreground="{StaticResource PhoneAccentBrush}" />
+                        <TextBox Name="person1NameTextBox" Text="{Binding Source={StaticResource appSettings}, Path=Birthday1NameSetting, Mode=TwoWay}" />
+                        <TextBlock Text="Birthdate" Name="Person1BirthdateLabelTextBlock"  FontSize="24" Foreground="{StaticResource PhoneAccentBrush}" />
+                        <StackPanel Orientation="Horizontal">
+                            <telerikInput:RadDatePicker x:Name="Birthday1RadDatePicker" Width="275" Value="{Binding Source={StaticResource appSettings}, Path=Birthday1DateSetting, Mode=TwoWay}"  />
+                            <CheckBox Content="Use Time " Height="Auto" HorizontalAlignment="Left" Margin="10,0,0,0" Name="UseTime1CheckBox" VerticalAlignment="Top" IsChecked="{Binding Source={StaticResource appSettings}, Path=UseTime1CheckBoxSetting, Mode=TwoWay}" Checked="UseTime1CheckBoxChecked" Unchecked="UseTime1CheckBoxUnchecked" />
+                        </StackPanel>
+                        <telerikInput:RadTimePicker x:Name="Birthday1RadTimePicker" Value="{Binding Source={StaticResource appSettings}, Path=Birthday1TimeSetting, Mode=TwoWay}"  />
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+
+            <!--PivotItem item two-->
+            <controls:PivotItem Header="Person 2">
+                <Grid>
+                    <StackPanel>
+                        <CheckBox Content="Enable This Person " 
+                                  Height="Auto" 
+                                  HorizontalAlignment="Left" 
+                                  Margin="10,0,0,0" Name="UsePerson2CheckBox" 
+                                  VerticalAlignment="Top" 
+                                  IsChecked="{Binding Source={StaticResource appSettings}, Path=UsePerson2CheckBoxSetting, Mode=TwoWay}" Checked="UsePerson2CheckBoxChecked" Unchecked="UsePerson2CheckBoxUnchecked" />
+                        <StackPanel Name="Person2StackPanel">
+                            <TextBlock Text="Name" Name="person2NameLabelTextBlock"  FontSize="24" Foreground="{StaticResource PhoneAccentBrush}" />
+                            <TextBox Name="person2NameTextBox" Text="{Binding Source={StaticResource appSettings}, Path=Birthday2NameSetting, Mode=TwoWay}" />
+                            <TextBlock Text="Birthdate" Name="Person2BirthdateLabelTextBlock"  FontSize="24" Foreground="{StaticResource PhoneAccentBrush}" />
+                            <StackPanel Orientation="Horizontal">
+                                <telerikInput:RadDatePicker x:Name="Birthday2RadDatePicker" Width="275" Value="{Binding Source={StaticResource appSettings}, Path=Birthday2DateSetting, Mode=TwoWay}"  />
+                                <CheckBox Content="Use Time " Height="Auto" HorizontalAlignment="Left" Margin="10,0,0,0" Name="UseTime2CheckBox" VerticalAlignment="Top" IsChecked="{Binding Source={StaticResource appSettings}, Path=UseTime2CheckBoxSetting, Mode=TwoWay}" Unchecked="UseTime2CheckBoxUnchecked" Checked="UseTime2CheckBoxChecked" />
+                            </StackPanel>
+                            <telerikInput:RadTimePicker x:Name="Birthday2RadTimePicker" Value="{Binding Source={StaticResource appSettings}, Path=Birthday2TimeSetting, Mode=TwoWay}"  />
+
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+
+            <!--PivotItem item three-->
+            <controls:PivotItem Header="Person 3">
+                <Grid>
+                    <StackPanel>
+                        <CheckBox Content="Enable This Person " Height="Auto" HorizontalAlignment="Left" Margin="10,0,0,0" Name="UsePerson3CheckBox" VerticalAlignment="Top" IsChecked="{Binding Source={StaticResource appSettings}, Path=UsePerson3CheckBoxSetting, Mode=TwoWay}" Checked="UsePerson3CheckBoxChecked" Unchecked="UsePerson3CheckBoxUnchecked" />
+                        <StackPanel Name="Person3StackPanel">
+                            <TextBlock Text="Name" Name="person3NameLabelTextBlock"  FontSize="24" Foreground="{StaticResource PhoneAccentBrush}" />
+                            <TextBox Name="person3NameTextBox" Text="{Binding Source={StaticResource appSettings}, Path=Birthday3NameSetting, Mode=TwoWay}" />
+                            <TextBlock Text="Birthdate" Name="Person3BirthdateLabelTextBlock"  FontSize="24" Foreground="{StaticResource PhoneAccentBrush}" />
+                            <StackPanel Orientation="Horizontal">
+                                <telerikInput:RadDatePicker x:Name="Birthday3RadDatePicker" Width="275" Value="{Binding Source={StaticResource appSettings}, Path=Birthday3DateSetting, Mode=TwoWay}"  />
+                                <CheckBox Content="Use Time " Height="Auto" HorizontalAlignment="Left" Margin="10,0,0,0" Name="UseTime3CheckBox" VerticalAlignment="Top" IsChecked="{Binding Source={StaticResource appSettings}, Path=UseTime3CheckBoxSetting, Mode=TwoWay}" Checked="UseTime3CheckBoxChecked" Unchecked="UseTime3CheckBoxUnchecked" />
+                            </StackPanel>
+                            <telerikInput:RadTimePicker x:Name="Birthday3RadTimePicker" Value="{Binding Source={StaticResource appSettings}, Path=Birthday3TimeSetting, Mode=TwoWay}"  />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </controls:PivotItem>
+            </controls:Pivot>
+    </Grid>
+
+    <!--Panorama-based applications should not show an ApplicationBar-->
+
+</phone:PhoneApplicationPage>
