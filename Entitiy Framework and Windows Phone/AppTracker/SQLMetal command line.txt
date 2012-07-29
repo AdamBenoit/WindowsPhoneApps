@@ -1,0 +1,1 @@
+sqlmetal "D:\DropBox\Dropbox\__Windows Phone Applications\AppTracker\AppTracker.sdf" /code:"D:\DropBox\Dropbox\__Windows Phone Applications\AppTracker\AppTracker.WP\Models\DataClasses.cs" /language:csharp /namespace:AppTracker.WP.Models /context:AppTrackerDataContext /pluralize

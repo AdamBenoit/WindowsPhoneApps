@@ -4,46 +4,388 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AppTrackerDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="AppTrackerDataModelTargetContainer">
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="AppTrackerDataModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="AppTrackerDataModelStoreContainer">
+    <EntitySet Name="Ideas" EntityType="AppTrackerDataModel.Store.Ideas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tags" EntityType="AppTrackerDataModel.Store.Tags" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IdeaTags" EntityType="AppTrackerDataModel.Store.IdeaTags" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Platforms" EntityType="AppTrackerDataModel.Store.Platforms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="IdeaPlatforms" EntityType="AppTrackerDataModel.Store.IdeaPlatforms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Status" EntityType="AppTrackerDataModel.Store.Status" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notes" EntityType="AppTrackerDataModel.Store.Notes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categories" EntityType="AppTrackerDataModel.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="IdeaIdeaTag" Association="AppTrackerDataModel.Store.IdeaIdeaTag">
+      <End Role="Idea" EntitySet="Ideas" />
+      <End Role="IdeaTag" EntitySet="IdeaTags" />
+    </AssociationSet>
+    <AssociationSet Name="TagIdeaTag" Association="AppTrackerDataModel.Store.TagIdeaTag">
+      <End Role="Tag" EntitySet="Tags" />
+      <End Role="IdeaTag" EntitySet="IdeaTags" />
+    </AssociationSet>
+    <AssociationSet Name="IdeaIdeaPlatform" Association="AppTrackerDataModel.Store.IdeaIdeaPlatform">
+      <End Role="Idea" EntitySet="Ideas" />
+      <End Role="IdeaPlatform" EntitySet="IdeaPlatforms" />
+    </AssociationSet>
+    <AssociationSet Name="PlatformIdeaPlatform" Association="AppTrackerDataModel.Store.PlatformIdeaPlatform">
+      <End Role="Platform" EntitySet="Platforms" />
+      <End Role="IdeaPlatform" EntitySet="IdeaPlatforms" />
+    </AssociationSet>
+    <AssociationSet Name="StatusIdea" Association="AppTrackerDataModel.Store.StatusIdea">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Idea" EntitySet="Ideas" />
+    </AssociationSet>
+    <AssociationSet Name="IdeaNote" Association="AppTrackerDataModel.Store.IdeaNote">
+      <End Role="Idea" EntitySet="Ideas" />
+      <End Role="Note" EntitySet="Notes" />
+    </AssociationSet>
+    <AssociationSet Name="CategoryIdea" Association="AppTrackerDataModel.Store.CategoryIdea">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Idea" EntitySet="Ideas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Ideas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" />
+    <Property Name="DateAdded" Type="datetime" Nullable="false" />
+    <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" />
+  </EntityType>
+  <EntityType Name="IdeaTags">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdeaId" Type="int" Nullable="false" />
+    <Property Name="TagId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Platforms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" />
+  </EntityType>
+  <EntityType Name="IdeaPlatforms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdeaId" Type="int" Nullable="false" />
+    <Property Name="PlatformId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Notes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdeaId" Type="int" Nullable="false" />
+    <Property Name="DateUpdated" Type="datetime" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" Nullable="false" />
+    <Property Name="NoteText" Type="nvarchar" Nullable="false" />
+    <Property Name="Idea_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" />
+  </EntityType>
+  <Association Name="IdeaIdeaTag">
+    <End Role="Idea" Type="AppTrackerDataModel.Store.Ideas" Multiplicity="1" />
+    <End Role="IdeaTag" Type="AppTrackerDataModel.Store.IdeaTags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IdeaTag">
+        <PropertyRef Name="IdeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TagIdeaTag">
+    <End Role="Tag" Type="AppTrackerDataModel.Store.Tags" Multiplicity="1" />
+    <End Role="IdeaTag" Type="AppTrackerDataModel.Store.IdeaTags" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tag">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IdeaTag">
+        <PropertyRef Name="TagId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IdeaIdeaPlatform">
+    <End Role="Idea" Type="AppTrackerDataModel.Store.Ideas" Multiplicity="1" />
+    <End Role="IdeaPlatform" Type="AppTrackerDataModel.Store.IdeaPlatforms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IdeaPlatform">
+        <PropertyRef Name="IdeaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PlatformIdeaPlatform">
+    <End Role="Platform" Type="AppTrackerDataModel.Store.Platforms" Multiplicity="1" />
+    <End Role="IdeaPlatform" Type="AppTrackerDataModel.Store.IdeaPlatforms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Platform">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="IdeaPlatform">
+        <PropertyRef Name="PlatformId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StatusIdea">
+    <End Role="Status" Type="AppTrackerDataModel.Store.Status" Multiplicity="1" />
+    <End Role="Idea" Type="AppTrackerDataModel.Store.Ideas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Idea">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="IdeaNote">
+    <End Role="Idea" Type="AppTrackerDataModel.Store.Ideas" Multiplicity="1" />
+    <End Role="Note" Type="AppTrackerDataModel.Store.Notes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Idea">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Note">
+        <PropertyRef Name="Idea_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CategoryIdea">
+    <End Role="Category" Type="AppTrackerDataModel.Store.Categories" Multiplicity="1" />
+    <End Role="Idea" Type="AppTrackerDataModel.Store.Ideas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Idea">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AppTrackerDataModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="AppTrackerDataModelContainer">
           <EntitySet Name="Ideas" EntityType="AppTrackerDataModel.Idea" />
+          <EntitySet Name="Tags" EntityType="AppTrackerDataModel.Tag" />
+          <EntitySet Name="IdeaTags" EntityType="AppTrackerDataModel.IdeaTag" />
+          <EntitySet Name="Platforms" EntityType="AppTrackerDataModel.Platform" />
+          <EntitySet Name="IdeaPlatforms" EntityType="AppTrackerDataModel.IdeaPlatform" />
+          <EntitySet Name="Status" EntityType="AppTrackerDataModel.Status" />
+          <EntitySet Name="Notes" EntityType="AppTrackerDataModel.Note" />
           <EntitySet Name="Categories" EntityType="AppTrackerDataModel.Category" />
-          <AssociationSet Name="CategoryIdea" Association="AppTrackerDataModel.CategoryIdea">
-            <End Role="Category" EntitySet="Categories" />
+          <AssociationSet Name="IdeaIdeaTag" Association="AppTrackerDataModel.IdeaIdeaTag">
+            <End Role="Idea" EntitySet="Ideas" />
+            <End Role="IdeaTag" EntitySet="IdeaTags" />
+          </AssociationSet>
+          <AssociationSet Name="TagIdeaTag" Association="AppTrackerDataModel.TagIdeaTag">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="IdeaTag" EntitySet="IdeaTags" />
+          </AssociationSet>
+          <AssociationSet Name="IdeaIdeaPlatform" Association="AppTrackerDataModel.IdeaIdeaPlatform">
+            <End Role="Idea" EntitySet="Ideas" />
+            <End Role="IdeaPlatform" EntitySet="IdeaPlatforms" />
+          </AssociationSet>
+          <AssociationSet Name="PlatformIdeaPlatform" Association="AppTrackerDataModel.PlatformIdeaPlatform">
+            <End Role="Platform" EntitySet="Platforms" />
+            <End Role="IdeaPlatform" EntitySet="IdeaPlatforms" />
+          </AssociationSet>
+          <AssociationSet Name="StatusIdea" Association="AppTrackerDataModel.StatusIdea">
+            <End Role="Status" EntitySet="Status" />
             <End Role="Idea" EntitySet="Ideas" />
           </AssociationSet>
-          <EntitySet Name="Notes" EntityType="AppTrackerDataModel.Note" />
           <AssociationSet Name="IdeaNote" Association="AppTrackerDataModel.IdeaNote">
             <End Role="Idea" EntitySet="Ideas" />
             <End Role="Note" EntitySet="Notes" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryIdea" Association="AppTrackerDataModel.CategoryIdea">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Idea" EntitySet="Ideas" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Idea">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <NavigationProperty Name="Category" Relationship="AppTrackerDataModel.CategoryIdea" FromRole="Idea" ToRole="Category" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Type="String" Name="Name" Nullable="false" />
-          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <Property Type="DateTime" Name="DateUpdated" Nullable="false" />
+          <Property Type="Int32" Name="StatusId" Nullable="false" />
           <Property Type="Int32" Name="CategoryId" Nullable="false" />
+          <NavigationProperty Name="Tags" Relationship="AppTrackerDataModel.IdeaIdeaTag" FromRole="Idea" ToRole="IdeaTag" />
+          <NavigationProperty Name="Platforms" Relationship="AppTrackerDataModel.IdeaIdeaPlatform" FromRole="Idea" ToRole="IdeaPlatform" />
+          <NavigationProperty Name="Status" Relationship="AppTrackerDataModel.StatusIdea" FromRole="Idea" ToRole="Status" />
           <NavigationProperty Name="Notes" Relationship="AppTrackerDataModel.IdeaNote" FromRole="Idea" ToRole="Note" />
+          <NavigationProperty Name="Category" Relationship="AppTrackerDataModel.CategoryIdea" FromRole="Idea" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <NavigationProperty Name="IdeaTags" Relationship="AppTrackerDataModel.TagIdeaTag" FromRole="Tag" ToRole="IdeaTag" />
+        </EntityType>
+        <EntityType Name="IdeaTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="IdeaId" Nullable="false" />
+          <Property Type="Int32" Name="TagId" Nullable="false" />
+          <NavigationProperty Name="Idea" Relationship="AppTrackerDataModel.IdeaIdeaTag" FromRole="IdeaTag" ToRole="Idea" />
+          <NavigationProperty Name="Tag" Relationship="AppTrackerDataModel.TagIdeaTag" FromRole="IdeaTag" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Platform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <NavigationProperty Name="IdeaPlatforms" Relationship="AppTrackerDataModel.PlatformIdeaPlatform" FromRole="Platform" ToRole="IdeaPlatform" />
+        </EntityType>
+        <EntityType Name="IdeaPlatform">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="IdeaId" Nullable="false" />
+          <Property Type="Int32" Name="PlatformId" Nullable="false" />
+          <NavigationProperty Name="Idea" Relationship="AppTrackerDataModel.IdeaIdeaPlatform" FromRole="IdeaPlatform" ToRole="Idea" />
+          <NavigationProperty Name="Platform" Relationship="AppTrackerDataModel.PlatformIdeaPlatform" FromRole="IdeaPlatform" ToRole="Platform" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="String" Name="Name" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" />
+          <NavigationProperty Name="Ideas" Relationship="AppTrackerDataModel.StatusIdea" FromRole="Status" ToRole="Idea" />
+        </EntityType>
+        <EntityType Name="Note">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Type="Int32" Name="IdeaId" Nullable="false" />
+          <Property Type="DateTime" Name="DateUpdated" Nullable="false" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <Property Type="String" Name="NoteText" Nullable="false" />
+          <NavigationProperty Name="Idea" Relationship="AppTrackerDataModel.IdeaNote" FromRole="Note" ToRole="Idea" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <NavigationProperty Name="Ideas" Relationship="AppTrackerDataModel.CategoryIdea" FromRole="Category" ToRole="Idea" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Type="String" Name="Name" Nullable="false" />
+          <NavigationProperty Name="Ideas" Relationship="AppTrackerDataModel.CategoryIdea" FromRole="Category" ToRole="Idea" />
         </EntityType>
+        <Association Name="IdeaIdeaTag">
+          <End Type="AppTrackerDataModel.Idea" Role="Idea" Multiplicity="1" />
+          <End Type="AppTrackerDataModel.IdeaTag" Role="IdeaTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Idea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdeaTag">
+              <PropertyRef Name="IdeaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TagIdeaTag">
+          <End Type="AppTrackerDataModel.Tag" Role="Tag" Multiplicity="1" />
+          <End Type="AppTrackerDataModel.IdeaTag" Role="IdeaTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdeaTag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IdeaIdeaPlatform">
+          <End Type="AppTrackerDataModel.Idea" Role="Idea" Multiplicity="1" />
+          <End Type="AppTrackerDataModel.IdeaPlatform" Role="IdeaPlatform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Idea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdeaPlatform">
+              <PropertyRef Name="IdeaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlatformIdeaPlatform">
+          <End Type="AppTrackerDataModel.Platform" Role="Platform" Multiplicity="1" />
+          <End Type="AppTrackerDataModel.IdeaPlatform" Role="IdeaPlatform" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Platform">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdeaPlatform">
+              <PropertyRef Name="PlatformId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StatusIdea">
+          <End Type="AppTrackerDataModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="AppTrackerDataModel.Idea" Role="Idea" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Idea">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IdeaNote">
+          <End Type="AppTrackerDataModel.Idea" Role="Idea" Multiplicity="1" />
+          <End Type="AppTrackerDataModel.Note" Role="Note" Multiplicity="*" />
+        </Association>
         <Association Name="CategoryIdea">
           <End Type="AppTrackerDataModel.Category" Role="Category" Multiplicity="1" />
           <End Type="AppTrackerDataModel.Idea" Role="Idea" Multiplicity="*" />
@@ -56,38 +398,99 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Note">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" a:StoreGeneratedPattern="Identity" xmlns:a="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Type="Int32" Name="IdeaId" Nullable="false" />
-          <Property Type="String" Name="NoteText" Nullable="false" />
-          <NavigationProperty Name="Idea" Relationship="AppTrackerDataModel.IdeaNote" FromRole="Note" ToRole="Idea" />
-        </EntityType>
-        <Association Name="IdeaNote">
-          <End Type="AppTrackerDataModel.Idea" Role="Idea" Multiplicity="1" />
-          <End Type="AppTrackerDataModel.Note" Role="Note" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Idea">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Note">
-              <PropertyRef Name="IdeaId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <Alias Key="Model" Value="AppTrackerDataModel" />
-        <Alias Key="Target" Value="AppTrackerDataModel.Store" />
-        <EntityContainerMapping CdmEntityContainer="AppTrackerDataModelContainer" StorageEntityContainer="AppTrackerDataModelTargetContainer">
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AppTrackerDataModelStoreContainer" CdmEntityContainer="AppTrackerDataModelContainer">
+    <EntitySetMapping Name="Ideas">
+      <EntityTypeMapping TypeName="IsTypeOf(AppTrackerDataModel.Idea)">
+        <MappingFragment StoreEntitySet="Ideas">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tags">
+      <EntityTypeMapping TypeName="IsTypeOf(AppTrackerDataModel.Tag)">
+        <MappingFragment StoreEntitySet="Tags">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IdeaTags">
+      <EntityTypeMapping TypeName="IsTypeOf(AppTrackerDataModel.IdeaTag)">
+        <MappingFragment StoreEntitySet="IdeaTags">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdeaId" ColumnName="IdeaId" />
+          <ScalarProperty Name="TagId" ColumnName="TagId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Platforms">
+      <EntityTypeMapping TypeName="IsTypeOf(AppTrackerDataModel.Platform)">
+        <MappingFragment StoreEntitySet="Platforms">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IdeaPlatforms">
+      <EntityTypeMapping TypeName="IsTypeOf(AppTrackerDataModel.IdeaPlatform)">
+        <MappingFragment StoreEntitySet="IdeaPlatforms">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdeaId" ColumnName="IdeaId" />
+          <ScalarProperty Name="PlatformId" ColumnName="PlatformId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="IsTypeOf(AppTrackerDataModel.Status)">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notes">
+      <EntityTypeMapping TypeName="IsTypeOf(AppTrackerDataModel.Note)">
+        <MappingFragment StoreEntitySet="Notes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdeaId" ColumnName="IdeaId" />
+          <ScalarProperty Name="DateUpdated" ColumnName="DateUpdated" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="NoteText" ColumnName="NoteText" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(AppTrackerDataModel.Category)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="IdeaNote" TypeName="AppTrackerDataModel.IdeaNote" StoreEntitySet="Notes">
+      <EndProperty Name="Idea">
+        <ScalarProperty Name="Id" ColumnName="Idea_Id" />
+      </EndProperty>
+      <EndProperty Name="Note">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <edmx:Designer>
@@ -104,18 +507,42 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="AppTrackerDataModel" xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
-        <EntityTypeShape EntityType="AppTrackerDataModel.Idea" Width="1.5" PointX="1.875" PointY="0.875" Height="1.9802864583333339" />
-        <EntityTypeShape EntityType="AppTrackerDataModel.Category" Width="1.5" PointX="4" PointY="0.875" Height="1.59568359375" />
-        <AssociationConnector Association="AppTrackerDataModel.CategoryIdea">
-          <ConnectorPoint PointX="4" PointY="1.6728417968750002" />
-          <ConnectorPoint PointX="3.375" PointY="1.6728417968750002" />
+      <Diagram Name="AppTrackerDataModel" xmlns="http://schemas.microsoft.com/ado/2008/10/edmx" ZoomLevel="86">
+        <EntityTypeShape EntityType="AppTrackerDataModel.Idea" Width="1.5" PointX="9" PointY="3.125" Height="3.3263964843749996" />
+        <EntityTypeShape EntityType="AppTrackerDataModel.Tag" Width="1.5" PointX="4.625" PointY="5.375" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="AppTrackerDataModel.IdeaTag" Width="1.5" PointX="6.75" PointY="5.375" Height="1.9802864583333353" />
+        <EntityTypeShape EntityType="AppTrackerDataModel.Platform" Width="1.5" PointX="4.625" PointY="3.125" Height="1.7879850260416745" />
+        <EntityTypeShape EntityType="AppTrackerDataModel.IdeaPlatform" Width="1.5" PointX="6.75" PointY="3.125" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="AppTrackerDataModel.Status" Width="1.5" PointX="9" PointY="7.125" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="AppTrackerDataModel.Note" Width="1.5" PointX="11.25" PointY="3.125" Height="2.1725878906250031" />
+        <EntityTypeShape EntityType="AppTrackerDataModel.Category" Width="1.5" PointX="11.25" PointY="5.625" Height="1.5956835937500031" />
+        <AssociationConnector Association="AppTrackerDataModel.IdeaIdeaTag" >
+          <ConnectorPoint PointX="9" PointY="5.9131982421875" />
+          <ConnectorPoint PointX="8.25" PointY="5.9131982421875" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="AppTrackerDataModel.Note" Width="1.5" PointX="4" PointY="2.75" Height="1.5956835937499996" />
-        <AssociationConnector Association="AppTrackerDataModel.IdeaNote">
-          <ConnectorPoint PointX="2.625" PointY="3.047587890625" />
-          <ConnectorPoint PointX="2.625" PointY="3.6439925130208333" />
-          <ConnectorPoint PointX="4" PointY="3.6439925130208333" />
+        <AssociationConnector Association="AppTrackerDataModel.TagIdeaTag" >
+          <ConnectorPoint PointX="6.125" PointY="6.2689925130208337" />
+          <ConnectorPoint PointX="6.75" PointY="6.2689925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="AppTrackerDataModel.IdeaIdeaPlatform" >
+          <ConnectorPoint PointX="9" PointY="4.1151432291666694" />
+          <ConnectorPoint PointX="8.25" PointY="4.1151432291666694" />
+        </AssociationConnector>
+        <AssociationConnector Association="AppTrackerDataModel.PlatformIdeaPlatform" >
+          <ConnectorPoint PointX="6.125" PointY="4.0189925130208373" />
+          <ConnectorPoint PointX="6.75" PointY="4.0189925130208373" />
+        </AssociationConnector>
+        <AssociationConnector Association="AppTrackerDataModel.StatusIdea" >
+          <ConnectorPoint PointX="9.75" PointY="7.125" />
+          <ConnectorPoint PointX="9.75" PointY="6.451396484375" />
+        </AssociationConnector>
+        <AssociationConnector Association="AppTrackerDataModel.IdeaNote" >
+          <ConnectorPoint PointX="10.5" PointY="4.2112939453125016" />
+          <ConnectorPoint PointX="11.25" PointY="4.2112939453125016" />
+        </AssociationConnector>
+        <AssociationConnector Association="AppTrackerDataModel.CategoryIdea" >
+          <ConnectorPoint PointX="11.25" PointY="6.0381982421875" />
+          <ConnectorPoint PointX="10.5" PointY="6.0381982421875" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>

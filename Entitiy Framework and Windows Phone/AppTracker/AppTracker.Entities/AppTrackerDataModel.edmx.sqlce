@@ -1,0 +1,252 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server Compact Edition
+-- --------------------------------------------------
+-- Date Created: 07/27/2012 00:24:45
+-- Generated from EDMX file: D:\DropBox\Dropbox\__Windows Phone Applications\AppTracker\AppTracker.Entities\AppTrackerDataModel.edmx
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- NOTE: if the constraint does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- NOTE: if the table does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'Ideas'
+CREATE TABLE [Ideas] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(4000)  NOT NULL,
+    [Description] nvarchar(4000)  NULL,
+    [DateAdded] datetime  NOT NULL,
+    [DateUpdated] datetime  NOT NULL,
+    [StatusId] int  NOT NULL,
+    [CategoryId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Tags'
+CREATE TABLE [Tags] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(4000)  NOT NULL,
+    [Description] nvarchar(4000)  NULL
+);
+GO
+
+-- Creating table 'IdeaTags'
+CREATE TABLE [IdeaTags] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [IdeaId] int  NOT NULL,
+    [TagId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Platforms'
+CREATE TABLE [Platforms] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(4000)  NOT NULL,
+    [Description] nvarchar(4000)  NULL
+);
+GO
+
+-- Creating table 'IdeaPlatforms'
+CREATE TABLE [IdeaPlatforms] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [IdeaId] int  NOT NULL,
+    [PlatformId] int  NOT NULL
+);
+GO
+
+-- Creating table 'Status'
+CREATE TABLE [Status] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(4000)  NOT NULL,
+    [Description] nvarchar(4000)  NULL
+);
+GO
+
+-- Creating table 'Notes'
+CREATE TABLE [Notes] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [IdeaId] int  NOT NULL,
+    [DateUpdated] datetime  NOT NULL,
+    [DateAdded] datetime  NOT NULL,
+    [NoteText] nvarchar(4000)  NOT NULL,
+    [Idea_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'Categories'
+CREATE TABLE [Categories] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(4000)  NOT NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [Id] in table 'Ideas'
+ALTER TABLE [Ideas]
+ADD CONSTRAINT [PK_Ideas]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Tags'
+ALTER TABLE [Tags]
+ADD CONSTRAINT [PK_Tags]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'IdeaTags'
+ALTER TABLE [IdeaTags]
+ADD CONSTRAINT [PK_IdeaTags]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Platforms'
+ALTER TABLE [Platforms]
+ADD CONSTRAINT [PK_Platforms]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'IdeaPlatforms'
+ALTER TABLE [IdeaPlatforms]
+ADD CONSTRAINT [PK_IdeaPlatforms]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Status'
+ALTER TABLE [Status]
+ADD CONSTRAINT [PK_Status]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Notes'
+ALTER TABLE [Notes]
+ADD CONSTRAINT [PK_Notes]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Categories'
+ALTER TABLE [Categories]
+ADD CONSTRAINT [PK_Categories]
+    PRIMARY KEY ([Id] );
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [IdeaId] in table 'IdeaTags'
+ALTER TABLE [IdeaTags]
+ADD CONSTRAINT [FK_IdeaIdeaTag]
+    FOREIGN KEY ([IdeaId])
+    REFERENCES [Ideas]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_IdeaIdeaTag'
+CREATE INDEX [IX_FK_IdeaIdeaTag]
+ON [IdeaTags]
+    ([IdeaId]);
+GO
+
+-- Creating foreign key on [TagId] in table 'IdeaTags'
+ALTER TABLE [IdeaTags]
+ADD CONSTRAINT [FK_TagIdeaTag]
+    FOREIGN KEY ([TagId])
+    REFERENCES [Tags]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TagIdeaTag'
+CREATE INDEX [IX_FK_TagIdeaTag]
+ON [IdeaTags]
+    ([TagId]);
+GO
+
+-- Creating foreign key on [IdeaId] in table 'IdeaPlatforms'
+ALTER TABLE [IdeaPlatforms]
+ADD CONSTRAINT [FK_IdeaIdeaPlatform]
+    FOREIGN KEY ([IdeaId])
+    REFERENCES [Ideas]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_IdeaIdeaPlatform'
+CREATE INDEX [IX_FK_IdeaIdeaPlatform]
+ON [IdeaPlatforms]
+    ([IdeaId]);
+GO
+
+-- Creating foreign key on [PlatformId] in table 'IdeaPlatforms'
+ALTER TABLE [IdeaPlatforms]
+ADD CONSTRAINT [FK_PlatformIdeaPlatform]
+    FOREIGN KEY ([PlatformId])
+    REFERENCES [Platforms]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PlatformIdeaPlatform'
+CREATE INDEX [IX_FK_PlatformIdeaPlatform]
+ON [IdeaPlatforms]
+    ([PlatformId]);
+GO
+
+-- Creating foreign key on [StatusId] in table 'Ideas'
+ALTER TABLE [Ideas]
+ADD CONSTRAINT [FK_StatusIdea]
+    FOREIGN KEY ([StatusId])
+    REFERENCES [Status]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_StatusIdea'
+CREATE INDEX [IX_FK_StatusIdea]
+ON [Ideas]
+    ([StatusId]);
+GO
+
+-- Creating foreign key on [Idea_Id] in table 'Notes'
+ALTER TABLE [Notes]
+ADD CONSTRAINT [FK_IdeaNote]
+    FOREIGN KEY ([Idea_Id])
+    REFERENCES [Ideas]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_IdeaNote'
+CREATE INDEX [IX_FK_IdeaNote]
+ON [Notes]
+    ([Idea_Id]);
+GO
+
+-- Creating foreign key on [CategoryId] in table 'Ideas'
+ALTER TABLE [Ideas]
+ADD CONSTRAINT [FK_CategoryIdea]
+    FOREIGN KEY ([CategoryId])
+    REFERENCES [Categories]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CategoryIdea'
+CREATE INDEX [IX_FK_CategoryIdea]
+ON [Ideas]
+    ([CategoryId]);
+GO
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------

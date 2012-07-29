@@ -18,8 +18,13 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
+[assembly: EdmRelationshipAttribute("AppTrackerDataModel", "IdeaIdeaTag", "Idea", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(AppTracker.Entities.Idea), "IdeaTag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(AppTracker.Entities.IdeaTag), true)]
+[assembly: EdmRelationshipAttribute("AppTrackerDataModel", "TagIdeaTag", "Tag", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(AppTracker.Entities.Tag), "IdeaTag", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(AppTracker.Entities.IdeaTag), true)]
+[assembly: EdmRelationshipAttribute("AppTrackerDataModel", "IdeaIdeaPlatform", "Idea", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(AppTracker.Entities.Idea), "IdeaPlatform", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(AppTracker.Entities.IdeaPlatform), true)]
+[assembly: EdmRelationshipAttribute("AppTrackerDataModel", "PlatformIdeaPlatform", "Platform", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(AppTracker.Entities.Platform), "IdeaPlatform", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(AppTracker.Entities.IdeaPlatform), true)]
+[assembly: EdmRelationshipAttribute("AppTrackerDataModel", "StatusIdea", "Status", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(AppTracker.Entities.Status), "Idea", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(AppTracker.Entities.Idea), true)]
+[assembly: EdmRelationshipAttribute("AppTrackerDataModel", "IdeaNote", "Idea", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(AppTracker.Entities.Idea), "Note", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(AppTracker.Entities.Note))]
 [assembly: EdmRelationshipAttribute("AppTrackerDataModel", "CategoryIdea", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(AppTracker.Entities.Category), "Idea", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(AppTracker.Entities.Idea), true)]
-[assembly: EdmRelationshipAttribute("AppTrackerDataModel", "IdeaNote", "Idea", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(AppTracker.Entities.Idea), "Note", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(AppTracker.Entities.Note), true)]
 
 #endregion
 
@@ -87,18 +92,82 @@ namespace AppTracker.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Category> Categories
+        public ObjectSet<Tag> Tags
         {
             get
             {
-                if ((_Categories == null))
+                if ((_Tags == null))
                 {
-                    _Categories = base.CreateObjectSet<Category>("Categories");
+                    _Tags = base.CreateObjectSet<Tag>("Tags");
                 }
-                return _Categories;
+                return _Tags;
             }
         }
-        private ObjectSet<Category> _Categories;
+        private ObjectSet<Tag> _Tags;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<IdeaTag> IdeaTags
+        {
+            get
+            {
+                if ((_IdeaTags == null))
+                {
+                    _IdeaTags = base.CreateObjectSet<IdeaTag>("IdeaTags");
+                }
+                return _IdeaTags;
+            }
+        }
+        private ObjectSet<IdeaTag> _IdeaTags;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Platform> Platforms
+        {
+            get
+            {
+                if ((_Platforms == null))
+                {
+                    _Platforms = base.CreateObjectSet<Platform>("Platforms");
+                }
+                return _Platforms;
+            }
+        }
+        private ObjectSet<Platform> _Platforms;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<IdeaPlatform> IdeaPlatforms
+        {
+            get
+            {
+                if ((_IdeaPlatforms == null))
+                {
+                    _IdeaPlatforms = base.CreateObjectSet<IdeaPlatform>("IdeaPlatforms");
+                }
+                return _IdeaPlatforms;
+            }
+        }
+        private ObjectSet<IdeaPlatform> _IdeaPlatforms;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Status> Status
+        {
+            get
+            {
+                if ((_Status == null))
+                {
+                    _Status = base.CreateObjectSet<Status>("Status");
+                }
+                return _Status;
+            }
+        }
+        private ObjectSet<Status> _Status;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -115,6 +184,22 @@ namespace AppTracker.Entities
             }
         }
         private ObjectSet<Note> _Notes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Category> Categories
+        {
+            get
+            {
+                if ((_Categories == null))
+                {
+                    _Categories = base.CreateObjectSet<Category>("Categories");
+                }
+                return _Categories;
+            }
+        }
+        private ObjectSet<Category> _Categories;
 
         #endregion
         #region AddTo Methods
@@ -128,11 +213,43 @@ namespace AppTracker.Entities
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Categories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// Deprecated Method for adding a new object to the Tags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
-        public void AddToCategories(Category category)
+        public void AddToTags(Tag tag)
         {
-            base.AddObject("Categories", category);
+            base.AddObject("Tags", tag);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the IdeaTags EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToIdeaTags(IdeaTag ideaTag)
+        {
+            base.AddObject("IdeaTags", ideaTag);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Platforms EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToPlatforms(Platform platform)
+        {
+            base.AddObject("Platforms", platform);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the IdeaPlatforms EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToIdeaPlatforms(IdeaPlatform ideaPlatform)
+        {
+            base.AddObject("IdeaPlatforms", ideaPlatform);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Status EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToStatus(Status status)
+        {
+            base.AddObject("Status", status);
         }
     
         /// <summary>
@@ -141,6 +258,14 @@ namespace AppTracker.Entities
         public void AddToNotes(Note note)
         {
             base.AddObject("Notes", note);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Categories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCategories(Category category)
+        {
+            base.AddObject("Categories", category);
         }
 
         #endregion
@@ -272,14 +397,18 @@ namespace AppTracker.Entities
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
-        /// <param name="description">Initial value of the Description property.</param>
+        /// <param name="dateAdded">Initial value of the DateAdded property.</param>
+        /// <param name="dateUpdated">Initial value of the DateUpdated property.</param>
+        /// <param name="statusId">Initial value of the StatusId property.</param>
         /// <param name="categoryId">Initial value of the CategoryId property.</param>
-        public static Idea CreateIdea(global::System.Int32 id, global::System.String name, global::System.String description, global::System.Int32 categoryId)
+        public static Idea CreateIdea(global::System.Int32 id, global::System.String name, global::System.DateTime dateAdded, global::System.DateTime dateUpdated, global::System.Int32 statusId, global::System.Int32 categoryId)
         {
             Idea idea = new Idea();
             idea.Id = id;
             idea.Name = name;
-            idea.Description = description;
+            idea.DateAdded = dateAdded;
+            idea.DateUpdated = dateUpdated;
+            idea.StatusId = statusId;
             idea.CategoryId = categoryId;
             return idea;
         }
@@ -341,7 +470,7 @@ namespace AppTracker.Entities
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Description
         {
@@ -353,7 +482,7 @@ namespace AppTracker.Entities
             {
                 OnDescriptionChanging(value);
                 ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, false);
+                _Description = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Description");
                 OnDescriptionChanged();
             }
@@ -361,6 +490,78 @@ namespace AppTracker.Entities
         private global::System.String _Description;
         partial void OnDescriptionChanging(global::System.String value);
         partial void OnDescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateAdded
+        {
+            get
+            {
+                return _DateAdded;
+            }
+            set
+            {
+                OnDateAddedChanging(value);
+                ReportPropertyChanging("DateAdded");
+                _DateAdded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateAdded");
+                OnDateAddedChanged();
+            }
+        }
+        private global::System.DateTime _DateAdded;
+        partial void OnDateAddedChanging(global::System.DateTime value);
+        partial void OnDateAddedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateUpdated
+        {
+            get
+            {
+                return _DateUpdated;
+            }
+            set
+            {
+                OnDateUpdatedChanging(value);
+                ReportPropertyChanging("DateUpdated");
+                _DateUpdated = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateUpdated");
+                OnDateUpdatedChanged();
+            }
+        }
+        private global::System.DateTime _DateUpdated;
+        partial void OnDateUpdatedChanging(global::System.DateTime value);
+        partial void OnDateUpdatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 StatusId
+        {
+            get
+            {
+                return _StatusId;
+            }
+            set
+            {
+                OnStatusIdChanging(value);
+                ReportPropertyChanging("StatusId");
+                _StatusId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("StatusId");
+                OnStatusIdChanged();
+            }
+        }
+        private global::System.Int32 _StatusId;
+        partial void OnStatusIdChanging(global::System.Int32 value);
+        partial void OnStatusIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -389,6 +590,110 @@ namespace AppTracker.Entities
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "IdeaIdeaTag", "IdeaTag")]
+        public EntityCollection<IdeaTag> Tags
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<IdeaTag>("AppTrackerDataModel.IdeaIdeaTag", "IdeaTag");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<IdeaTag>("AppTrackerDataModel.IdeaIdeaTag", "IdeaTag", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "IdeaIdeaPlatform", "IdeaPlatform")]
+        public EntityCollection<IdeaPlatform> Platforms
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<IdeaPlatform>("AppTrackerDataModel.IdeaIdeaPlatform", "IdeaPlatform");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<IdeaPlatform>("AppTrackerDataModel.IdeaIdeaPlatform", "IdeaPlatform", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "StatusIdea", "Status")]
+        public Status Status
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("AppTrackerDataModel.StatusIdea", "Status").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("AppTrackerDataModel.StatusIdea", "Status").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Status> StatusReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Status>("AppTrackerDataModel.StatusIdea", "Status");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Status>("AppTrackerDataModel.StatusIdea", "Status", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "IdeaNote", "Note")]
+        public EntityCollection<Note> Notes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Note>("AppTrackerDataModel.IdeaNote", "Note");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Note>("AppTrackerDataModel.IdeaNote", "Note", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -427,6 +732,116 @@ namespace AppTracker.Entities
                 }
             }
         }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="AppTrackerDataModel", Name="IdeaPlatform")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class IdeaPlatform : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new IdeaPlatform object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="ideaId">Initial value of the IdeaId property.</param>
+        /// <param name="platformId">Initial value of the PlatformId property.</param>
+        public static IdeaPlatform CreateIdeaPlatform(global::System.Int32 id, global::System.Int32 ideaId, global::System.Int32 platformId)
+        {
+            IdeaPlatform ideaPlatform = new IdeaPlatform();
+            ideaPlatform.Id = id;
+            ideaPlatform.IdeaId = ideaId;
+            ideaPlatform.PlatformId = platformId;
+            return ideaPlatform;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdeaId
+        {
+            get
+            {
+                return _IdeaId;
+            }
+            set
+            {
+                OnIdeaIdChanging(value);
+                ReportPropertyChanging("IdeaId");
+                _IdeaId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IdeaId");
+                OnIdeaIdChanged();
+            }
+        }
+        private global::System.Int32 _IdeaId;
+        partial void OnIdeaIdChanging(global::System.Int32 value);
+        partial void OnIdeaIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 PlatformId
+        {
+            get
+            {
+                return _PlatformId;
+            }
+            set
+            {
+                OnPlatformIdChanging(value);
+                ReportPropertyChanging("PlatformId");
+                _PlatformId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PlatformId");
+                OnPlatformIdChanged();
+            }
+        }
+        private global::System.Int32 _PlatformId;
+        partial void OnPlatformIdChanging(global::System.Int32 value);
+        partial void OnPlatformIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -434,18 +849,258 @@ namespace AppTracker.Entities
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "IdeaNote", "Note")]
-        public EntityCollection<Note> Notes
+        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "IdeaIdeaPlatform", "Idea")]
+        public Idea Idea
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Note>("AppTrackerDataModel.IdeaNote", "Note");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Idea>("AppTrackerDataModel.IdeaIdeaPlatform", "Idea").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Idea>("AppTrackerDataModel.IdeaIdeaPlatform", "Idea").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Idea> IdeaReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Idea>("AppTrackerDataModel.IdeaIdeaPlatform", "Idea");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Note>("AppTrackerDataModel.IdeaNote", "Note", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Idea>("AppTrackerDataModel.IdeaIdeaPlatform", "Idea", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "PlatformIdeaPlatform", "Platform")]
+        public Platform Platform
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Platform>("AppTrackerDataModel.PlatformIdeaPlatform", "Platform").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Platform>("AppTrackerDataModel.PlatformIdeaPlatform", "Platform").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Platform> PlatformReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Platform>("AppTrackerDataModel.PlatformIdeaPlatform", "Platform");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Platform>("AppTrackerDataModel.PlatformIdeaPlatform", "Platform", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="AppTrackerDataModel", Name="IdeaTag")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class IdeaTag : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new IdeaTag object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="ideaId">Initial value of the IdeaId property.</param>
+        /// <param name="tagId">Initial value of the TagId property.</param>
+        public static IdeaTag CreateIdeaTag(global::System.Int32 id, global::System.Int32 ideaId, global::System.Int32 tagId)
+        {
+            IdeaTag ideaTag = new IdeaTag();
+            ideaTag.Id = id;
+            ideaTag.IdeaId = ideaId;
+            ideaTag.TagId = tagId;
+            return ideaTag;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 IdeaId
+        {
+            get
+            {
+                return _IdeaId;
+            }
+            set
+            {
+                OnIdeaIdChanging(value);
+                ReportPropertyChanging("IdeaId");
+                _IdeaId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IdeaId");
+                OnIdeaIdChanged();
+            }
+        }
+        private global::System.Int32 _IdeaId;
+        partial void OnIdeaIdChanging(global::System.Int32 value);
+        partial void OnIdeaIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TagId
+        {
+            get
+            {
+                return _TagId;
+            }
+            set
+            {
+                OnTagIdChanging(value);
+                ReportPropertyChanging("TagId");
+                _TagId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TagId");
+                OnTagIdChanged();
+            }
+        }
+        private global::System.Int32 _TagId;
+        partial void OnTagIdChanging(global::System.Int32 value);
+        partial void OnTagIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "IdeaIdeaTag", "Idea")]
+        public Idea Idea
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Idea>("AppTrackerDataModel.IdeaIdeaTag", "Idea").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Idea>("AppTrackerDataModel.IdeaIdeaTag", "Idea").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Idea> IdeaReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Idea>("AppTrackerDataModel.IdeaIdeaTag", "Idea");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Idea>("AppTrackerDataModel.IdeaIdeaTag", "Idea", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "TagIdeaTag", "Tag")]
+        public Tag Tag
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("AppTrackerDataModel.TagIdeaTag", "Tag").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("AppTrackerDataModel.TagIdeaTag", "Tag").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Tag> TagReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Tag>("AppTrackerDataModel.TagIdeaTag", "Tag");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Tag>("AppTrackerDataModel.TagIdeaTag", "Tag", value);
                 }
             }
         }
@@ -468,12 +1123,16 @@ namespace AppTracker.Entities
         /// </summary>
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="ideaId">Initial value of the IdeaId property.</param>
+        /// <param name="dateUpdated">Initial value of the DateUpdated property.</param>
+        /// <param name="dateAdded">Initial value of the DateAdded property.</param>
         /// <param name="noteText">Initial value of the NoteText property.</param>
-        public static Note CreateNote(global::System.Int32 id, global::System.Int32 ideaId, global::System.String noteText)
+        public static Note CreateNote(global::System.Int32 id, global::System.Int32 ideaId, global::System.DateTime dateUpdated, global::System.DateTime dateAdded, global::System.String noteText)
         {
             Note note = new Note();
             note.Id = id;
             note.IdeaId = ideaId;
+            note.DateUpdated = dateUpdated;
+            note.DateAdded = dateAdded;
             note.NoteText = noteText;
             return note;
         }
@@ -537,6 +1196,54 @@ namespace AppTracker.Entities
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
+        public global::System.DateTime DateUpdated
+        {
+            get
+            {
+                return _DateUpdated;
+            }
+            set
+            {
+                OnDateUpdatedChanging(value);
+                ReportPropertyChanging("DateUpdated");
+                _DateUpdated = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateUpdated");
+                OnDateUpdatedChanged();
+            }
+        }
+        private global::System.DateTime _DateUpdated;
+        partial void OnDateUpdatedChanging(global::System.DateTime value);
+        partial void OnDateUpdatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateAdded
+        {
+            get
+            {
+                return _DateAdded;
+            }
+            set
+            {
+                OnDateAddedChanging(value);
+                ReportPropertyChanging("DateAdded");
+                _DateAdded = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateAdded");
+                OnDateAddedChanged();
+            }
+        }
+        private global::System.DateTime _DateAdded;
+        partial void OnDateAddedChanging(global::System.DateTime value);
+        partial void OnDateAddedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
         public global::System.String NoteText
         {
             get
@@ -594,6 +1301,396 @@ namespace AppTracker.Entities
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Idea>("AppTrackerDataModel.IdeaNote", "Idea", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="AppTrackerDataModel", Name="Platform")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Platform : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Platform object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Platform CreatePlatform(global::System.Int32 id, global::System.String name)
+        {
+            Platform platform = new Platform();
+            platform.Id = id;
+            platform.Name = name;
+            return platform;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "PlatformIdeaPlatform", "IdeaPlatform")]
+        public EntityCollection<IdeaPlatform> IdeaPlatforms
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<IdeaPlatform>("AppTrackerDataModel.PlatformIdeaPlatform", "IdeaPlatform");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<IdeaPlatform>("AppTrackerDataModel.PlatformIdeaPlatform", "IdeaPlatform", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="AppTrackerDataModel", Name="Status")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Status : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Status object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Status CreateStatus(global::System.Int32 id, global::System.String name)
+        {
+            Status status = new Status();
+            status.Id = id;
+            status.Name = name;
+            return status;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "StatusIdea", "Idea")]
+        public EntityCollection<Idea> Ideas
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Idea>("AppTrackerDataModel.StatusIdea", "Idea");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Idea>("AppTrackerDataModel.StatusIdea", "Idea", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="AppTrackerDataModel", Name="Tag")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Tag : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Tag object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="name">Initial value of the Name property.</param>
+        public static Tag CreateTag(global::System.Int32 id, global::System.String name)
+        {
+            Tag tag = new Tag();
+            tag.Id = id;
+            tag.Name = name;
+            return tag;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Name
+        {
+            get
+            {
+                return _Name;
+            }
+            set
+            {
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
+            }
+        }
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Description
+        {
+            get
+            {
+                return _Description;
+            }
+            set
+            {
+                OnDescriptionChanging(value);
+                ReportPropertyChanging("Description");
+                _Description = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Description");
+                OnDescriptionChanged();
+            }
+        }
+        private global::System.String _Description;
+        partial void OnDescriptionChanging(global::System.String value);
+        partial void OnDescriptionChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("AppTrackerDataModel", "TagIdeaTag", "IdeaTag")]
+        public EntityCollection<IdeaTag> IdeaTags
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<IdeaTag>("AppTrackerDataModel.TagIdeaTag", "IdeaTag");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<IdeaTag>("AppTrackerDataModel.TagIdeaTag", "IdeaTag", value);
                 }
             }
         }
