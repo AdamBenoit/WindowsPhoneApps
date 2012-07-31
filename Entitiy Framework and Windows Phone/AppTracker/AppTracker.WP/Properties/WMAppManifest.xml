@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.1">
-  <App xmlns="" ProductID="{919fac13-b55e-4f9a-ae7a-2b3ac4a836f6}" Title="AppTracker.WP" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="AppTracker.WP author" Description="Sample description" Publisher="AppTracker.WP">
+  <App xmlns="" ProductID="{c492734f-f4e3-4b94-96be-2eb0cabf7192}" Title="AppTracker.WP" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="AppTracker.WP author" Description="Sample description" Publisher="AppTracker.WP">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_GAMERSERVICES"/>
@@ -26,7 +26,7 @@
       <PrimaryToken TokenID="AppTracker.WPToken" TaskName="_default">
         <TemplateType5>
           <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
-          <Count>0</Count>
+          <Count>42</Count>
           <Title>AppTracker.WP</Title>
         </TemplateType5>
       </PrimaryToken>
